@@ -1,9 +1,11 @@
 import React from "react";
+import TimeCountDown from "./TimeCountDown";
 import "./Card.scss";
 
 class Card extends React.PureComponent {
   render() {
-    const { dataItem } = this.props;
+    console.log('CardRender')
+    const { dataItem, removeCardFromId } = this.props;
     return (
       <div className="card">
         <div className="ctn-img">
@@ -15,7 +17,9 @@ class Card extends React.PureComponent {
             height={15}
             src="https://dummyimage.com/200x200/000/fff"
           />
-          <span className="txt-name">{dataItem.name}</span>
+          <span className="span-txt-name">
+            <div className="txt-name"> {dataItem.name} </div>
+          </span>
         </div>
         <div className="quantity-item">1 Items</div>
         <div className="quantity-panto">
@@ -32,7 +36,14 @@ class Card extends React.PureComponent {
             height={15}
             src="https://dummyimage.com/200x200/000/fff"
           />{" "}
-          <span className="txt-time"> {dataItem.time} </span>
+          <span className="txt-time">
+            {" "}
+            <TimeCountDown
+              id={dataItem.id}
+              removeCardFromId={removeCardFromId}
+              remainTime={dataItem.time}
+            />{" "}
+          </span>
         </div>
       </div>
     );
